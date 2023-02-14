@@ -1,4 +1,41 @@
 @font-face {
     font-family: Roboto Regular;
-    src: url();
+    src: url(../fonts/RobotoCondensed-Regular.ttf);
+}
+
+* {
+    font-family: "Roboto Regular";
+}
+
+body {
+    background-color: black;
+    margin: 0;
+    height: 100vh;
+    
+}
+
+#wrapper {
+    background-color: rgb(98, 163, 141);
+    height: 100vh;
+    border-radius: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dog_logo {
+    background-image: url(../media/logo.png);
+    background-size: cover;
+    background-position: center;
+    height: 40px;
+    width: 40px;
+}
+
+footer {
+    position: absolute;
+    bottom: -1px;
 }
