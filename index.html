@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/index.css">
@@ -8,22 +9,29 @@
     <link rel="shortcut icon" href="media/logo.png" type="image/x-icon">
     <title>Dog Breed Quiz</title>
 </head>
+
 <body>
+
+    <div id="feedback_bg" class="invisible"></div>
 
     <div id="wrapper">
         <header>
             <div class="dog_logo"></div>
             <div class="title">Dog Breed Quiz</div>
         </header>
+        <main></main>
+        <div id="feedback" class="invisible">Contacting the server...</div>
         <footer>
-            <p>The Dog Breed Quiz is made possible thanks to the free API by <a href="http://dog.ceo/dog-api">DOG CEO Zine</a></p>
+            <p>The Dog Breed Quiz is made possible thanks to the free API by <a href="http://dog.ceo/dog-api">DOG CEO
+                    Zine</a></p>
         </footer>
     </div>
-    
+
     <script src="js/data.js"></script>
     <script src="js/login_register.js"></script>
     <script src="js/quiz.js"></script>
     <script src="js/server_connection.js"></script>
     <script src="index.js"></script>
 </body>
+
 </html>
