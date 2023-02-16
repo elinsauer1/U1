@@ -16,6 +16,7 @@ function create_register_page() {
 
         let feedback_container = document.querySelector("#feedback");
         feedback_container.classList.remove("invisible");
+        document.querySelector("#feedback_bg").classList.remove("invisible");
         feedback_container.textContent = "Contacting the server..."
 
         const un = document.querySelector(".un").value;
@@ -68,6 +69,7 @@ function alert(message) {
 
     feedback_button.addEventListener("click", (event) => {
         feedback_container.classList.add("invisible")
+        document.querySelector("#feedback_bg").classList.add("invisible");
     })
 }
 
