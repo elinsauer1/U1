@@ -1,2 +1,2 @@
 
-create_register_page();
+create_login_page();
