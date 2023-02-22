@@ -71,3 +71,7 @@ input {
     background-color: rgba(245, 245, 245, 0.5);
     z-index: 1;
 }
+
+.wrong_credentials {
+    background-color: whitesmoke;
+}

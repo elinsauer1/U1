@@ -18,20 +18,46 @@ function create_login_page() {
 
     document.querySelector(".button_login").addEventListener("click", async (event) => {
 
+
+        document.querySelector("#feedback_bg").classList.remove("invisible");
+
         let feedback_container = document.querySelector("#feedback");
         feedback_container.classList.remove("invisible");
-        document.querySelector("#feedback_bg").classList.remove("invisible");
         feedback_container.textContent = "Contacting the server..."
 
         const un_input = document.querySelector(".un").value;
         const pw_input = document.querySelector(".pw").value;
 
-        const check_credentials = await fetch_resource(`https://teaching.maumt.se/apis/access/)https//teaching.maumt.se/apis/access/?action=check_credentials&user_name=${un_input}&password=${pw_input}`)
+        const check_credentials = await fetch_resource(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${un_input}&password=${pw_input}`);
 
         console.log(check_credentials);
 
-        document.querySelector(".un").value = ``;
+        // document.querySelector(".un").value = ``;
         document.querySelector(".pw").value = ``;
+
+        feedback_container.classList.add("invisible");
+        document.querySelector("#feedback_bg").classList.add("invisible");
+
+        console.log(check_credentials.status);
+
+        switch (check_credentials.status) {
+            case 200:
+                create_quiz_page(un_input);
+                break;
+
+            case 404:
+
+                document.querySelector(".ready").classList.add("wrong_credentials")
+                document.querySelector(".wrong_credentials").textContent = "Wrong user name or password"
+                break;
+
+            case 418:
+                alert("The server thinks it´s not a teapot!")
+                break;
+
+            default:
+                break;
+        }
 
     });
 
@@ -104,8 +130,13 @@ function create_register_page() {
 
 function alert(message) {
 
+    console.log(message);
+
     const feedback_container = document.querySelector("#feedback");
+    feedback_container.classList.remove("invisible");
     feedback_container.textContent = message;
+
+    document.querySelector("#feedback_bg").classList.remove("invisible");
 
     const feedback_button = document.createElement("button");
     feedback_button.textContent = "Close";

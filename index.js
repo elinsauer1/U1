@@ -1,2 +1,2 @@
 
-create_login_page();
+create_quiz_page();
