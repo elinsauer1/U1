@@ -1,4 +1,4 @@
-.header_quiz {
+.header {
     background-color: whitesmoke;
     border-radius: 10px;
     padding: 10px;
@@ -6,7 +6,11 @@
     justify-content: space-between;
 }
 
-.header_quiz p,
-.header_quiz button {
+.header p,
+.header button {
     margin: 0;
+}
+
+#quiz_header img {
+    width: 80vw;
 }
