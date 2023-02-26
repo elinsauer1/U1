@@ -25,6 +25,8 @@ function create_login_page() {
 
         document.querySelector("#feedback_bg").classList.remove("invisible");
         feedback_container.classList.remove("invisible");
+        document.querySelector(".ready").textContent = "Let the magic start!";
+        document.querySelector(".ready").classList.remove("wrong_credentials");
 
         alert_no_button("Contacting the server...");
 
