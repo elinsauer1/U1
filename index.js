@@ -1,5 +1,6 @@
 
 create_login_page();
+load_page();
 
 
 function random_number(max) {
@@ -41,7 +42,6 @@ function alert_no_button(message) {
     document.querySelector("#feedback_bg").classList.remove("invisible");
 }
 
-load_page();
 function load_page() {
 
     if (localStorage.getItem("user_name") === null) {

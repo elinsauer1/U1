@@ -46,6 +46,7 @@ function create_login_page() {
 
 
                 case 404:
+                    hide_feedback();
                     document.querySelector(".ready").classList.add("wrong_credentials")
                     document.querySelector(".wrong_credentials").textContent = "Wrong user name or password"
                     break;
@@ -63,8 +64,6 @@ function create_login_page() {
                 alert_with_button("Couldn't reach server, please try again", "CLOSE");
             }
         }
-
-        hide_feedback();
 
     });
 

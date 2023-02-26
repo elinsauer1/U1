@@ -31,6 +31,8 @@ function create_quiz_page(un_input) {
 
     async function create_quiz() {
 
+        document.querySelector("#alternatives").innerHTML = ``;
+
         let array_breeds = [];
 
         while (array_breeds.length < 4) {
@@ -46,7 +48,9 @@ function create_quiz_page(un_input) {
         const image_for_random_breed = await (await fetch_resource(`https://dog.ceo/api/breed/${random_breed.url}/images/random`)).json();
 
         document.querySelector("#quiz_container img").src = await image_for_random_breed.message;
+
         document.querySelector("#wrapper").classList.remove("bg_img");
+
         hide_feedback();
 
         array_breeds.forEach(breed => {
@@ -66,7 +70,7 @@ function create_quiz_page(un_input) {
                     document.querySelector("#feedback").style.backgroundColor = "rgb(214, 55, 55)";
                 }
 
-                document.querySelector(".close_button").addEventListener("click", create_quiz_page);
+                document.querySelector(".close_button").addEventListener("click", create_quiz);
             }))
         })
 
