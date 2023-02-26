@@ -21,11 +21,11 @@ function create_login_page() {
 
     document.querySelector(".button_login").addEventListener("click", async (event) => {
 
+        let feedback_container = document.querySelector("#feedback");
 
         document.querySelector("#feedback_bg").classList.remove("invisible");
-
-        let feedback_container = document.querySelector("#feedback");
         feedback_container.classList.remove("invisible");
+
         alert_no_button("Contacting the server...");
 
         const un_input = document.querySelector(".un").value;
@@ -89,8 +89,10 @@ function create_register_page() {
     document.querySelector(".button_register").addEventListener("click", async (event) => {
 
         let feedback_container = document.querySelector("#feedback");
+
         feedback_container.classList.remove("invisible");
         document.querySelector("#feedback_bg").classList.remove("invisible");
+
         alert_no_button("Contacting the server...")
 
         const un_input = document.querySelector(".un").value;
