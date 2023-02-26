@@ -42,32 +42,6 @@ input {
     cursor: pointer;
 }
 
-#feedback {
-    background-color: whitesmoke;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 20px;
-    position: relative;
-    bottom: 38%;
-    padding: 40px;
-    z-index: 2;
-}
-
-#feedback button {
-    width: 70vw;
-    height: 50px;
-    font-size: 20px;
-    margin-top: 5px;
-}
-
-#feedback_bg {
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    background-color: rgba(245, 245, 245, 0.5);
-    z-index: 1;
-}
-
 .wrong_credentials {
     background-color: whitesmoke;
 }

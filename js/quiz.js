@@ -1,3 +1,5 @@
+"use strict"
+
 function create_quiz_page(un_input) {
 
     document.querySelector("#wrapper").style.backgroundColor = "#c1afe4"

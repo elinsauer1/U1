@@ -1,3 +1,4 @@
+"use strict"
 
 create_login_page();
 load_page();
