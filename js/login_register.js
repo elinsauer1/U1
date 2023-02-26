@@ -14,7 +14,10 @@ function create_login_page() {
 
     document.querySelector("#wrapper").style.backgroundColor = "#d992a9";
 
-    document.querySelector(".link_to_register").addEventListener("click", create_register_page);
+    document.querySelector(".link_to_register").addEventListener("click", (event) => {
+        document.querySelector("#wrapper").style.transition = "background-color 1s"
+        create_register_page();
+    });
 
     document.querySelector(".button_login").addEventListener("click", async (event) => {
 
@@ -23,7 +26,7 @@ function create_login_page() {
 
         let feedback_container = document.querySelector("#feedback");
         feedback_container.classList.remove("invisible");
-        feedback_container.textContent = "Contacting the server..."
+        alert_no_button("Contacting the server...");
 
         const un_input = document.querySelector(".un").value;
         const pw_input = document.querySelector(".pw").value;
@@ -35,8 +38,7 @@ function create_login_page() {
         // document.querySelector(".un").value = ``;
         document.querySelector(".pw").value = ``;
 
-        feedback_container.classList.add("invisible");
-        document.querySelector("#feedback_bg").classList.add("invisible");
+        hide_feedback();
 
         console.log(check_credentials.status);
 
@@ -45,14 +47,18 @@ function create_login_page() {
                 create_quiz_page(un_input);
                 break;
 
-            case 404:
+            case 400:
+                alert_with_button("Please enter username and password", "CLOSE")
+                break;
 
+
+            case 404:
                 document.querySelector(".ready").classList.add("wrong_credentials")
                 document.querySelector(".wrong_credentials").textContent = "Wrong user name or password"
                 break;
 
             case 418:
-                alert("The server thinks it´s not a teapot!")
+                alert_with_button("The server thinks it´s not a teapot!", "CLOSE")
                 break;
 
             default:
@@ -63,8 +69,6 @@ function create_login_page() {
 
 
 }
-
-
 
 function create_register_page() {
 
@@ -87,64 +91,56 @@ function create_register_page() {
         let feedback_container = document.querySelector("#feedback");
         feedback_container.classList.remove("invisible");
         document.querySelector("#feedback_bg").classList.remove("invisible");
-        feedback_container.textContent = "Contacting the server..."
+        alert_no_button("Contacting the server...")
 
         const un_input = document.querySelector(".un").value;
         const pw_input = document.querySelector(".pw").value;
 
-        const add_new_user = await fetch_resource(new Request("https://teaching.maumt.se/apis/access/", {
-            method: "POST",
-            body: JSON.stringify({
-                action: "register",
-                user_name: un_input,
-                password: pw_input
-            }),
-            headers: { "Content-type": "application/json; charset=UTF-8" }
-        }));
+        try {
+            const add_new_user = await fetch_resource(new Request("https://teaching.maumt.se/apis/access/", {
+                method: "POST",
+                body: JSON.stringify({
+                    action: "register",
+                    user_name: un_input,
+                    password: pw_input
+                }),
+                headers: { "Content-type": "application/json; charset=UTF-8" }
+            }));
 
-        console.log(add_new_user);
+
+
+            switch (add_new_user.status) {
+                case 200:
+                    alert_with_button("Registration complete. Please proceed to login", "CLOSE")
+                    break;
+
+                case 400:
+                    alert_with_button("Please enter username and password", "CLOSE")
+                    break;
+
+                case 409:
+                    alert_with_button("Sorry, that name is taken. Please try with another one.", "CLOSE")
+                    break;
+
+                case 418:
+                    alert_with_button("The server thinks it´s not a teapot!", "CLOSE")
+                    break;
+
+                default:
+                    break;
+            }
+        } catch (error) {
+            console.log(error.message);
+            if (error.message.includes("NetworkError")) {
+                alert_with_button("Couldn't reach server, please try again", "CLOSE")
+            }
+        }
 
         document.querySelector(".un").value = ``;
         document.querySelector(".pw").value = ``;
-
-        switch (add_new_user.status) {
-            case 200:
-                alert("Registration complete. Please proceed to login")
-                break;
-
-            case 409:
-                alert("Sorry, that name is taken. Please try with another one.")
-                break;
-
-            case 418:
-                alert("The server thinks it´s not a teapot!")
-                break;
-
-            default:
-                break;
-        }
-
     })
 
 }
 
-function alert(message) {
 
-    console.log(message);
-
-    const feedback_container = document.querySelector("#feedback");
-    feedback_container.classList.remove("invisible");
-    feedback_container.textContent = message;
-
-    document.querySelector("#feedback_bg").classList.remove("invisible");
-
-    const feedback_button = document.createElement("button");
-    feedback_button.textContent = "Close";
-    feedback_container.append(feedback_button);
-
-    feedback_button.addEventListener("click", (event) => {
-        feedback_container.classList.add("invisible")
-        document.querySelector("#feedback_bg").classList.add("invisible");
-    })
-}
 

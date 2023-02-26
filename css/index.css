@@ -10,16 +10,18 @@
 body {
     background-color: black;
     margin: 0;
-    height: 100vh;
 
 }
 
 #wrapper {
     background-color: rgb(98, 163, 141);
-    height: 100%;
+    height: 100vh;
     border-radius: 15px;
     padding: 10px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
 }
 
 header {
@@ -42,4 +44,11 @@ footer {
 
 .invisible {
     display: none;
+}
+
+.bg_img {
+    background-image: url(../media/logo.png);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
