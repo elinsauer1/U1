@@ -1,5 +1,5 @@
 
-create_quiz_page();
+create_login_page();
 
 
 function random_number(max) {
@@ -39,4 +39,15 @@ function alert_no_button(message) {
 
     feedback_container.classList.remove("invisible");
     document.querySelector("#feedback_bg").classList.remove("invisible");
+}
+
+load_page();
+function load_page() {
+
+    if (localStorage.getItem("user_name") === null) {
+        create_login_page();
+    } else {
+        create_quiz_page(localStorage.getItem("user_name"));
+    }
+
 }

@@ -31,39 +31,40 @@ function create_login_page() {
         const un_input = document.querySelector(".un").value;
         const pw_input = document.querySelector(".pw").value;
 
-        const check_credentials = await fetch_resource(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${un_input}&password=${pw_input}`);
+        try {
+            const check_credentials = await fetch_resource(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${un_input}&password=${pw_input}`);
 
-        console.log(check_credentials);
+            switch (check_credentials.status) {
+                case 200:
+                    create_quiz_page(un_input);
+                    localStorage.setItem("user_name", un_input);
+                    break;
 
-        // document.querySelector(".un").value = ``;
-        document.querySelector(".pw").value = ``;
+                case 400:
+                    alert_with_button("Please enter username and password", "CLOSE")
+                    break;
+
+
+                case 404:
+                    document.querySelector(".ready").classList.add("wrong_credentials")
+                    document.querySelector(".wrong_credentials").textContent = "Wrong user name or password"
+                    break;
+
+                case 418:
+                    alert_with_button("The server thinks it´s not a teapot!", "CLOSE")
+                    break;
+
+                default:
+                    break;
+            }
+        } catch (error) {
+            console.log(error.message);
+            if (error.message.includes("NetworkError")) {
+                alert_with_button("Couldn't reach server, please try again", "CLOSE");
+            }
+        }
 
         hide_feedback();
-
-        console.log(check_credentials.status);
-
-        switch (check_credentials.status) {
-            case 200:
-                create_quiz_page(un_input);
-                break;
-
-            case 400:
-                alert_with_button("Please enter username and password", "CLOSE")
-                break;
-
-
-            case 404:
-                document.querySelector(".ready").classList.add("wrong_credentials")
-                document.querySelector(".wrong_credentials").textContent = "Wrong user name or password"
-                break;
-
-            case 418:
-                alert_with_button("The server thinks it´s not a teapot!", "CLOSE")
-                break;
-
-            default:
-                break;
-        }
 
     });
 
