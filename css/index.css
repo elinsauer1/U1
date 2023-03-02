@@ -25,6 +25,7 @@ body {
 
 main {
     margin: 3vh 2vh 2vh 1vh;
+    flex-grow: 1;
 }
 
 header {
@@ -38,11 +39,6 @@ header {
     background-position: center;
     height: 4vh;
     width: 4vh;
-}
-
-footer {
-    position: absolute;
-    bottom: -1px;
 }
 
 .invisible {

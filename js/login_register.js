@@ -39,7 +39,7 @@ function create_login_page() {
             switch (check_credentials.status) {
                 case 200:
                     create_quiz_page(un_input);
-                    localStorage.setItem("user_name", un_input);
+                    localStorage.setItem("user_name", un_input); //thea ska visa
                     break;
 
                 case 400:
@@ -48,7 +48,7 @@ function create_login_page() {
 
 
                 case 404:
-                    hide_feedback();
+                    hide_feedback(); //utan denna försvinner inte feedbacken
                     document.querySelector(".ready").classList.add("wrong_credentials")
                     document.querySelector(".wrong_credentials").textContent = "Wrong user name or password"
                     break;

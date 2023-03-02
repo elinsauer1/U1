@@ -44,7 +44,7 @@ function create_quiz_page(un_input) {
                 array_breeds.push(dog_breed);
             }
         }
-
+        //för den som är rätt svar
         const random_breed = array_breeds[random_number(array_breeds.length)];
 
         const image_for_random_breed = await (await fetch_resource(`https://dog.ceo/api/breed/${random_breed.url}/images/random`)).json();
