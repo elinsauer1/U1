@@ -49,7 +49,7 @@ function create_quiz_page(un_input) {
 
         const image_for_random_breed = await (await fetch_resource(`https://dog.ceo/api/breed/${random_breed.url}/images/random`)).json();
 
-        document.querySelector("#quiz_container img").src = await image_for_random_breed.message;
+        document.querySelector("#quiz_container img").src = image_for_random_breed.message;
 
         document.querySelector("#wrapper").classList.remove("bg_img");
 

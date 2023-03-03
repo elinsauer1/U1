@@ -57,10 +57,11 @@ header {
     padding: 10px;
     border-radius: 10px;
     font-size: 20px;
-    position: relative;
+    position: absolute;
     bottom: 38%;
     padding: 40px;
     z-index: 2;
+    width: 70vw;
 }
 
 #feedback button {
